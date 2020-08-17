@@ -6,6 +6,7 @@ const { environment } = require("./config");
 
 const indexRouter = require('./routes/index')
 const petsRouter = require('./routes/pets')
+const userRouter = require('./routes/users')
 
 const app = express();
 
@@ -15,6 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 app.use('/api', indexRouter)
 app.use('/api/pets', petsRouter)
+app.use('/api/users', userRouter)
 
 app.use((req, res, next) => {
   const err = new Error("The requested resource could not be found.");

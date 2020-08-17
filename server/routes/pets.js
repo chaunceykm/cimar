@@ -1,12 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const { Op } = require("sequelize");
+const { asyncHandler } = require("../utils");
+const { requireAuth } = require("../auth");
 
 const db = require("../db/models");
 const { Pet } = db;
-
-const asyncHandler = (handler) => (req, res, next) =>
-  handler(req, res, next).catch(next);
 
 const petNotFoundError = (id) => {
   const err = Error("Pet not found");
@@ -75,10 +74,55 @@ router.get(
 );
 
 //add pet
+router.post(
+  "/",
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const {
+      name,
+      breed,
+      size,
+      age,
+      sex,
+      intakeDate,
+      status,
+      photos,
+      videos,
+      notes,
+      healthConcerns,
+      houseBroken,
+      goodWithDogs,
+      goodWithCats,
+      goodWithChildren,
+    } = req.body;
+    const pet = await Pet.create({
+      name,
+      breed,
+      size,
+      age,
+      sex,
+      intakeDate,
+      status,
+      photos,
+      videos,
+      notes,
+      healthConcerns,
+      houseBroken,
+      goodWithDogs,
+      goodWithCats,
+      goodWithChildren,
+    });
+    if (res.status === 200) res.json({ pet });
+    else {
+      next(console.log(error));
+    }
+  })
+);
 
 //update pet
 router.put(
   "/:id(\\d+)",
+  requireAuth,
   asyncHandler(async (req, res) => {
     const pet = await Pet.findByPk(req.params.id, {
       attributes: [
@@ -127,6 +171,7 @@ router.put(
 //delete pet
 router.delete(
   "/:id(\\d+)",
+  requireAuth,
   asyncHandler(async (req, res, next) => {
     const pet = await Pet.findByPk(req.params.id);
     if (pet) {
