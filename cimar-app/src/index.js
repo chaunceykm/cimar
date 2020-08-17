@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './app.css';
 import { AppWithContext } from './AppWithContext';
 
 ReactDOM.render(
