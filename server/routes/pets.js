@@ -21,6 +21,7 @@ router.get(
   asyncHandler(async (req, res) => {
     const pets = await Pet.findAll({
       attributes: [
+        "id",
         "name",
         "breed",
         "size",
