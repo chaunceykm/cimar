@@ -1,9 +1,9 @@
 import React from 'react'
 
-export const PetProfile = () => {
+export const ViewFosters = () => {
   return (
     <div>
-      Pet Profile
+      
     </div>
   )
 }

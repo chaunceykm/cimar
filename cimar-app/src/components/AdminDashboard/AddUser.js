@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const LandingPage = () => {
+export const AddUser = () => {
   return (
     <div>
       

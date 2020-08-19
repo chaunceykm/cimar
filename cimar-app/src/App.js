@@ -1,40 +1,55 @@
 import React, { useContext } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { CimarContext } from "./context/CimarContext";
 import { CssBaseline } from "@material-ui/core";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import { theme } from "./theme";
 import { ProtectedRoute } from "./components/auth/ProtectedRoute";
-import { NavBar } from "./components/navigation/NavBar";
-import { Home } from "./components/Home/Home";
+import { Home } from "./components/Home";
 import { Gallery } from "./components/petViews/Gallery";
 import { PetProfile } from "./components/petViews/PetProfile";
-import { LandingPage } from "./components/LandingPage/LandingPage";
 import { AdminDashboard } from "./components/AdminDashboard/AdminDashboard";
 import { About } from "./components/About";
 import { ContactUs } from "./components/ContactUs";
 import { Calendar } from "./components/calendar/Calendar";
 import { Foster } from "./components/FosterandAdopt/Foster";
 import { Adopt } from "./components/FosterandAdopt/Adopt";
+import { AddPet } from "./components/AdminDashboard/AddPet";
+import { EditPet } from "./components/AdminDashboard/EditPet";
+import { Messages } from "./components/AdminDashboard/Messages";
+import { ViewApplications } from "./components/AdminDashboard/ViewApplications";
+import { AddUser } from "./components/AdminDashboard/AddUser";
+import { ViewFosters } from "./components/AdminDashboard/ViewFosters";
+import { ViewDonors } from "./components/AdminDashboard/ViewDonors";
+import { ViewExpenses } from "./components/AdminDashboard/ViewExpenses";
+import { ViewAdopters } from "./components/AdminDashboard/ViewAdopters";
+import { Resources } from "./components/Resources/Resources";
+import { CimarContext } from "./context/CimarContext";
+import { NavBar } from "./components/navigation/NavBar";
+import { Footer } from "./components/Footer";
+import { Layout } from "./Layout";
+import "fontsource-noto-sans-jp";
 
 function App() {
-  const { token } = useContext(CimarContext);
+  // const { token } = useContext(CimarContext);
   return (
     <MuiThemeProvider theme={theme}>
       <Router>
         <CssBaseline>
-          <Switch>
-            <Route exact to="/" component={LandingPage} />
-            <Route to="/home" component={Home} />
-            <Route to="pets" component={Gallery} />
-            <Route to="/pets/:id" component={PetProfile} />
-            <Route to="/calendar" component={Calendar} />
-            <Route to="/contact" component={ContactUs} />
-            <Route to="/about" component={About} />
-            <Route to="/adopt" component={Adopt} />
-            <Route to="/foster" component={Foster} />
-            <ProtectedRoute to="/admin" component={AdminDashboard} />
-          </Switch>
+          <NavBar />
+          <main>
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/pets" component={Gallery} />
+              <Route path="/pets/:id" component={PetProfile} />
+              <Route path="/events" component={Calendar} />
+              <Route path="/contact" component={ContactUs} />
+              <Route path="/resources" component={Resources} />
+              <Route path="/about" component={About} />
+              <Route exact path="/adopt" component={Adopt} />
+              <Route exact path="/foster" component={Foster} />
+            </Switch>
+          </main>
+          <Footer />
         </CssBaseline>
       </Router>
     </MuiThemeProvider>

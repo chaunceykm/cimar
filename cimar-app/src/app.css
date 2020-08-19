@@ -1,1 +1,17 @@
-/* TODO Add site wide styles */
+
+
+a {
+  text-decoration: none;
+  color: white;
+}
+a:hover {
+font-weight: 700;
+}
+a:active {
+text-decoration: underline;
+}
+
+main {
+  margin-top: 232px;
+  height: calc(100% - 60px);
+}

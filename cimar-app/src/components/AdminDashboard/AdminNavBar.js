@@ -1,9 +1,9 @@
 import React from 'react'
 
-export const PetProfile = () => {
+export const AdminNavBar = () => {
   return (
     <div>
-      Pet Profile
+      
     </div>
   )
 }

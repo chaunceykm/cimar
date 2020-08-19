@@ -3,7 +3,7 @@ import { Route, Redirect } from "react-router-dom";
 import { CimarContext } from "../../context/CimarContext";
 
 export const ProtectedRoute = ({ component: Component, ...rest }) => {
-  const { token } = useContext(CimarContext);
+  const token = window.localStorage.getItem('token')
   return (
     <Route
       {...rest}
