@@ -33,4 +33,4 @@ const eventNotFoundError = (id) => {
 //delete event
 
 
-module.export = router;
+module.exports = router;

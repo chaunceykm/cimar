@@ -29,4 +29,4 @@ const appNotFoundError = (id) => {
 
 //delete application
 
-module.export = router;
+module.exports = router;

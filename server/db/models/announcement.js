@@ -16,7 +16,6 @@ module.exports = (sequelize, DataTypes) => {
   Announcement.init({
     description: DataTypes.TEXT,
     link: DataTypes.STRING,
-    photo: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Announcement',
