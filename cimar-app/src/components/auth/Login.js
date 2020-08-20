@@ -7,8 +7,16 @@ import {
   Typography,
   Button,
 } from "@material-ui/core";
+import {makeStyles} from '@material-ui/core/styles'
+
+const useStyles = makeStyles(theme => ({
+  root: {
+  paddingTop: '60px'
+}
+}))
 
 export const Login = () => {
+  const classes = useStyles();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
@@ -26,22 +34,23 @@ export const Login = () => {
   };
   return (
     <Grid
+      className={classes.root}
       container
       justify="center"
       alignContent="center"
-      spacing={2}
+      spacing={3}
       direction="column"
     >
-      <Typography>Log In</Typography>
-      <Grid item container component="form">
+      <Grid item container component="form" direction='column' xs={4}>
         {error !== null && <div>{error}</div>}
         <InputLabel htmlFor="userEmail" className="block">
           Email:
         </InputLabel>
         <TextField
           type="email"
-          className=""
+          className={classes.input}
           name="userEmail"
+          margin='dense'
           value={email}
           placeholder="E.g: jdoe@gmail.com"
           id="userEmail"
@@ -52,8 +61,9 @@ export const Login = () => {
         </InputLabel>
         <TextField
           type="password"
-          className=""
+          className={classes.input}
           name="userPassword"
+          margin='dense'
           value={password}
           placeholder="Your Password"
           id="userPassword"

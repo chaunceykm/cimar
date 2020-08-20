@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const AdoptForm = () => {
+export const HappyTails = () => {
   return (
     <div>
       

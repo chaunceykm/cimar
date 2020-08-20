@@ -36,6 +36,7 @@ const useStyles = makeStyles((theme) => ({
       },
   },
   
+  
 }));
 
 export const NavBar = () => {
@@ -50,7 +51,7 @@ export const NavBar = () => {
             <List className={classes.list}>
               <ListItem>
                 <a href="/">
-                  <ListItemText className={classes.listItem } primary="Home" />
+                  <ListItemText className={classes.listItem} primary="Home" />
                 </a>
               </ListItem>
               <ListItem>
@@ -82,6 +83,11 @@ export const NavBar = () => {
                   <ListItemText className={classes.listItem} primary="Foster" />
                 </a>
               </ListItem>
+              <ListItem>
+                <a href="/happy-tails">
+                  <ListItemText className={classes.listItem} primary="Happy Tails" />
+                </a>
+              </ListItem>
 
               <ListItem>
                 <a href="/donate">
@@ -110,15 +116,6 @@ export const NavBar = () => {
                     className={classes.listItem}
                     primary="Contact Us"
                   />
-                </a>
-              </ListItem>
-              <ListItem>
-                <a
-                  href="https://www.facebook.com/cuzimatteranimalrescue/?ref=br_rs"
-                  target="_blank"
-                  className={classes.listItem}
-                >
-                  <Facebook />
                 </a>
               </ListItem>
             </List>

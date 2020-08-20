@@ -7,12 +7,16 @@ import { ProtectedRoute } from "./components/auth/ProtectedRoute";
 import { Home } from "./components/Home";
 import { Gallery } from "./components/petViews/Gallery";
 import { PetProfile } from "./components/petViews/PetProfile";
+import { Login } from "./components/auth/Login";
 import { AdminDashboard } from "./components/AdminDashboard/AdminDashboard";
 import { About } from "./components/About";
 import { ContactUs } from "./components/ContactUs";
 import { Calendar } from "./components/calendar/Calendar";
 import { Foster } from "./components/FosterandAdopt/Foster";
 import { Adopt } from "./components/FosterandAdopt/Adopt";
+import { Donate } from "./components/Donations/Donate";
+import { Application } from "./components/FosterandAdopt/Application";
+import { HappyTails } from "./components/HappyTails";
 import { AddPet } from "./components/AdminDashboard/AddPet";
 import { EditPet } from "./components/AdminDashboard/EditPet";
 import { Messages } from "./components/AdminDashboard/Messages";
@@ -41,12 +45,17 @@ function App() {
               <Route exact path="/" component={Home} />
               <Route exact path="/pets" component={Gallery} />
               <Route path="/pets/:id" component={PetProfile} />
+              <Route path="/happy-tails" component={HappyTails} />
               <Route path="/events" component={Calendar} />
               <Route path="/contact" component={ContactUs} />
               <Route path="/resources" component={Resources} />
+              <Route path="/donate" component={Donate} />
               <Route path="/about" component={About} />
               <Route exact path="/adopt" component={Adopt} />
               <Route exact path="/foster" component={Foster} />
+              <Route path="/login" component={Login} />
+              <Route path="/admin" component={AdminDashboard} />
+              <Route path="/application" component={Application} />
             </Switch>
           </main>
           <Footer />

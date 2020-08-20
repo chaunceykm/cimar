@@ -1,6 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Grid, Typography } from "@material-ui/core";
+import { Grid, Typography, IconButton } from "@material-ui/core";
 import { Facebook } from "@material-ui/icons";
 import logo from "../assets/logo.png";
 import lostPets from "../assets/lostPetUSA.png";
@@ -13,8 +13,8 @@ const useStyles = makeStyles((theme) => ({
     left: 0,
     right: 0,
     background: "#2b2e2c",
-    position: 'absolute',
-    width: '100vw'
+    position: "fixed",
+    width: "100vw",
   },
   image: {
     maxHeight: "50px",
@@ -23,18 +23,31 @@ const useStyles = makeStyles((theme) => ({
   partners: {},
   partnerPic: { maxWidth: "100px", padding: "10px" },
   text: { color: "white" },
+  listItem: {
+    color: 'white'
+  }
 }));
 
 export const Footer = () => {
   const classes = useStyles();
 
   return (
-    <Grid container component="footer" className={classes.root}>
+    <Grid container component="footer" direction='column' className={classes.root}>
       <Grid item container justify="center">
         <Typography className={classes.text}>
           &#169; 2020 "Cuz i Matter" Animal Rescue | P.O. Box 3751,
           Pflugerville, TX 78691
         </Typography>
+        <Grid container justify='center' item xs={12}>
+          <IconButton
+            component="a"
+            href="https://wwww.facebook.com/cuzimatteranimalrescue/?ref=br_rs"
+            target="_blank"
+          >
+            <Facebook className={classes.listItem} />
+            Visit us on Facebook!
+          </IconButton>
+        </Grid>
       </Grid>
 
       {/* <Grid

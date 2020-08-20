@@ -12,6 +12,7 @@ import {
   Radio,
   FormControlLabel,
   Checkbox,
+  SvgIcon,
   Icon,
   IconButton,
   Button,
@@ -35,6 +36,9 @@ const useStyles = makeStyles((theme) => ({
   root: {
     width: "100vw",
     height: "100vh",
+    "& > svg": {
+      margin: theme.spacing(2),
+    },
   },
   searches: {
     height: "100vh",
@@ -48,7 +52,37 @@ const useStyles = makeStyles((theme) => ({
   gridList: {
     height: "100vh",
   },
+  media: {
+    maxHeight: "150px",
+  },
+  icon: {
+    color: "black",
+  },
 }));
+
+function CatIcon(props) {
+  return (
+    <SvgIcon {...props}>
+      <path m={cat} />
+    </SvgIcon>
+  );
+}
+function DogIcon(props) {
+  return (
+    <SvgIcon {...props}>
+      <path m={dog} />
+    </SvgIcon>
+  );
+}
+
+function ChildrenIcon(props) {
+  return (
+    <SvgIcon {...props}>
+      <path m={children} />
+    </SvgIcon>
+  );
+}
+
 export const Gallery = () => {
   const classes = useStyles();
   const history = useHistory();
@@ -79,86 +113,99 @@ export const Gallery = () => {
   const handleSizeChange = (event) => {
     setSize({ ...size, [event.target.name]: event.target.checked });
   };
-  
-const [petData, setPetData] = useState();
 
-useEffect(() => {
-  Axios.get("http://localhost:8000/api/pets").then((response) => {
-    const pets = response.data.pets;
-    const newPetData = [];
-    pets.map((pet, index) => {
-      newPetData[index] = {
-        id: pet.id,
-        name: pet.name,
-        sex: pet.sex,
-        age: pet.age,
-        breed: pet.breed,
-        status: pet.status,
-        size: pet.size,
-        photos: pet.photos,
-        houseBroken: pet.houseBroken,
-        healthConcerns: pet.healthConcerns,
-        goodWithCats: pet.goodWithCats,
-        goodWithDogs: pet.goodWithDogs,
-        goodWithChildren: pet.goodWithChildren,
-      };
+  const [petData, setPetData] = useState();
+
+  useEffect(() => {
+    Axios.get("http://localhost:8000/api/pets").then((response) => {
+      const pets = response.data.pets;
+      const newPetData = [];
+      pets.map((pet, index) => {
+        newPetData[index] = {
+          id: pet.id,
+          name: pet.name,
+          sex: pet.sex,
+          age: pet.age,
+          breed: pet.breed,
+          status: pet.status,
+          size: pet.size,
+          photos: pet.photos,
+          houseBroken: pet.houseBroken,
+          healthConcerns: pet.healthConcerns,
+          goodWithCats: pet.goodWithCats,
+          goodWithDogs: pet.goodWithDogs,
+          goodWithChildren: pet.goodWithChildren,
+        };
+      });
+      setPetData(newPetData);
     });
-    setPetData(newPetData);
-  });
-}, []);
+  }, []);
 
-const getPet = () => {
-  const {
-    id,
-    name,
-    sex,
-    age,
-    breed,
-    status,
-    size,
-    photos,
-    houseBroken,
-    healthConcerns,
-    goodWithCats,
-    goodWithChildren,
-    goodWithDogs,
-  } = petData;
-  console.log(petData);
-  return (
-    <Grid item xs={12} sm={3}>
-      <Card onClick={() => history.push(`/pets/${id}`)}>
-        <CardActionArea>
-          <CardMedia
-            component="img"
-            alt={name}
-            height="140"
-            image={photos ? photos[0] : {dog}}
-            title={name}
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="p">
-              {name}
-            </Typography>
-            <Typography>Status: {status}</Typography>
-            <Typography>Sex: {sex}</Typography>
-            <Typography>Age: {age}</Typography>
-            <Typography>Size: {size}</Typography>
-            <Typography>Breed: {breed}</Typography>
-          </CardContent>
-        </CardActionArea>
-        <CardActions>
-          <Grid item container>
-            {healthConcerns ? <Favorite /> : null}
-            {houseBroken ? <House /> : null}
-            {goodWithDogs ? <Icon>{dog}</Icon> : null}
-            {goodWithCats ? <Icon>{cat}</Icon> : null}
-            {goodWithChildren ? <Icon>{children}</Icon> : null}
-          </Grid>
-        </CardActions>
-      </Card>
-    </Grid>
-  );
-};
+  const getPet = (petObject) => {
+    const {
+      id,
+      name,
+      sex,
+      age,
+      breed,
+      status,
+      size,
+      photos,
+      houseBroken,
+      healthConcerns,
+      goodWithCats,
+      goodWithChildren,
+      goodWithDogs,
+    } = petObject;
+    console.log(petObject);
+    return (
+      <Grid item xs={12} sm={3}>
+        <Card onClick={() => history.push(`/pets/${id}`)}>
+          <CardActionArea>
+            <CardMedia
+              className={classes.media}
+              component="img"
+              alt={name}
+              height="140"
+              image={photos ? photos[0] : "../../assets/dog.png"}
+              title={name}
+            />
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="p">
+                {name}
+              </Typography>
+              <Typography>Status: {status}</Typography>
+              <Typography>Sex: {sex}</Typography>
+              <Typography>Age: {age}</Typography>
+              <Typography>Size: {size}</Typography>
+              <Typography>Breed: {breed}</Typography>
+            </CardContent>
+          </CardActionArea>
+          <CardActions>
+            {healthConcerns === true ? (
+              <Favorite className={classes.icon} />
+            ) : null}
+            {houseBroken === true ? <House /> : null}
+            {goodWithDogs === true ? (
+              <Icon className={classes.icon}>
+                <img src={dog} alt="good with dogs" />
+              </Icon>
+            ) : null}
+            {goodWithCats === true ? (
+              <Icon className={classes.icon}>
+                <img src={cat} alt="good with cats" />
+              </Icon>
+            ) : null}
+            {goodWithChildren === true ? (
+              <Icon className={classes.icon}>
+                <img src={children} alt="good with children" />
+              </Icon>
+            ) : null}
+          </CardActions>
+        </Card>
+      </Grid>
+    );
+  };
 
   return petData ? (
     <Grid container className={classes.root}>
@@ -303,7 +350,10 @@ const getPet = () => {
         </FormControl>
       </Grid>
       <Grid item container className={classes.gallery} xs={10} spacing={2}>
-        {getPet()}
+        {petData.map((petObject, key) => {
+          key = { key };
+          return getPet(petObject);
+        })}
       </Grid>
     </Grid>
   ) : null;

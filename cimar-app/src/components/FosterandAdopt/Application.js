@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const Donations = () => {
+export const Application = () => {
   return (
     <div>
       
