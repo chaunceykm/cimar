@@ -16,6 +16,7 @@ const donationsRouter = require("./routes/donations");
 const applicationsRouter = require("./routes/applications");
 const announcementRouter = require("./routes/announcements");
 const adoptersRouter = require("./routes/adopters");
+const featuredPetRouter = require("./routes/featuedPets");
 
 const app = express();
 
@@ -35,6 +36,7 @@ app.use("/api/donations", donationsRouter);
 app.use("/api/applications", applicationsRouter);
 app.use("/api/adopters", adoptersRouter);
 app.use("/api/announcements", announcementRouter);
+app.use("/api/featuredPets", featuredPetRouter);
 
 app.use((req, res, next) => {
   const err = new Error("The requested resource could not be found.");

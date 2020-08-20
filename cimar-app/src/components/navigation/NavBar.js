@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
   listItem: {
     whiteSpace: "nowrap",
     "& span, & svg": {
-      fontSize: "1.5rem",
+      fontSize: "1.2rem",
       },
   },
   
@@ -47,7 +47,7 @@ export const NavBar = () => {
 
       <AppBar position="static">
         <Toolbar className={classes.toolbar}>
-          <Grid item container xs={12} justify="space-around">
+          <Grid item container xs={12} >
             <List className={classes.list}>
               <ListItem>
                 <a href="/">

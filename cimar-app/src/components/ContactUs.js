@@ -1,7 +1,34 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 import * as emailjs from "emailjs-com";
+import { makeStyles } from "@material-ui/core/styles";
+import {
+  Grid,
+  TextField,
+  TextareaAutosize,
+  InputLabel,
+  Button,
+  Typography,
+} from "@material-ui/core";
+import {} from "@material-ui/icons";
+import agent from "../assets/agentDog.jpg";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+
+  },
+  heading: {
+    textAlign: 'center'
+  },
+  formContainer: {
+    padding: '20px'
+  },
+  form: {
+    width: "600px",
+  },
+}));
 
 export const ContactUs = () => {
+  const classes = useStyles();
   const [messageData, setMessageData] = useState({
     name: "",
     email: "",
@@ -44,58 +71,80 @@ export const ContactUs = () => {
     resetform();
   };
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setMessageData({ ...messageData, [name]: value });
+    const { id, value } = e.target;
+    setMessageData({ ...messageData, [id]: value });
   };
   return (
-    <div className="contact__container">
-      <p className="contact__message">
-        Please allow up to 24 hours for a reply. We look forward to speaking
-        with you!
-      </p>
-      <div className="form__container">
-        <form onSubmit={handleSubmit}>
-          <label>Name</label>
-          <input
+    <Grid container className={classes.root}>
+      <Grid item xs={4} className={classes.image}>
+        <img src={agent} alt="agent dog" />
+      </Grid>
+
+      <Grid
+        item
+        container
+        xs={8}
+        justify="center"
+        className={classes.formContainer}
+      >
+        <Grid
+          item
+          container
+          direction="column"
+          component="form"
+          onSubmit={handleSubmit}
+          className={classes.form}
+        >
+          <Typography variant="subtitle1" className={classes.heading}>
+            Our agents are sitting pretty and waiting to hear from you. Please
+            allow up to 24 hours for a reply. We look forward to speaking with
+            you!
+          </Typography>
+          <InputLabel htmlFor="name">Name</InputLabel>
+          <TextField
             type="text"
-            name="name"
+            id="name"
             value={messageData.name}
             onChange={handleChange}
             placeholder="Jane Doe"
-            required={true}
+            required
+            variant="outlined"
           />
-          <label>Email address</label>
-          <input
+          <InputLabel htmlFor="email">Email</InputLabel>
+
+          <TextField
             type="email"
-            name="email"
+            id="email"
             value={messageData.email}
             onChange={handleChange}
             placeholder="name@email.com"
-            required={true}
+            required
+            variant="outlined"
           />
+          <InputLabel htmlFor="subject">Subect</InputLabel>
 
-          <label>Subject</label>
-          <input
+          <TextField
             type="text"
-            name="subject"
+            id="subject"
             value={messageData.subject}
             onChange={handleChange}
             placeholder="ex: Adoption question"
-            required={true}
+            required
+            variant="outlined"
           />
+          <InputLabel htmlFor="message">Message</InputLabel>
 
-          <label>Message</label>
-          <textarea
-            placeholder="Enter message here ..."
-            name="message"
+          <TextareaAutosize
+            id="message"
             value={messageData.message}
             onChange={handleChange}
-            required={true}
+            required
+            rowsMin={6}
+            variant="outlined"
           />
-
-          <button>Submit</button>
-        </form>
-      </div>
-    </div>
+          <Button type="submit">Submit</Button>
+        </Grid>
+      </Grid>
+    </Grid>
   );
-}
+};

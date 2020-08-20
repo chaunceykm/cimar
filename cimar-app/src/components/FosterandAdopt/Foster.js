@@ -9,7 +9,8 @@ const useStyles = makeStyles((theme) => ({
   },
   main: {
     width: '60%',
-    padding: '15px',
+    paddingLeft: '15px',
+    paddingRight: '15px'
   },
   button: {
     width: '100px'

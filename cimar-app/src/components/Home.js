@@ -4,6 +4,7 @@ import { Grid, Typography } from "@material-ui/core";
 import {} from "@material-ui/icons";
 import collage2 from "../assets/collage2.jpg";
 import { Announcements } from "./Announcements";
+import {FeaturedPet} from './FeaturedPet'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,7 +27,8 @@ export const Home = () => {
   return (
     <Grid container className={classes.root}>
       <Grid item container className={classes.picture} xs={6} />
-      <Grid item container justify='center' xs={6}className={classes.content}>
+      <Grid item container justify='center' xs={6} className={classes.content}>
+        <FeaturedPet />
         <Announcements />
       </Grid>
     </Grid>
