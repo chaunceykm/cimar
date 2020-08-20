@@ -11,6 +11,9 @@ module.exports = {
       donorName: {
         type: Sequelize.STRING
       },
+      dateOfDonation: {
+        type: Sequelize.DATEONLY
+      },
       amountInDollars: {
         type: Sequelize.INTEGER
       },
@@ -22,6 +25,9 @@ module.exports = {
       },
       receiptSentDate: {
         type: Sequelize.DATEONLY
+      },
+      reciptLocation: {
+        type: Sequelize.STRING
       },
       notes: {
         type: Sequelize.TEXT

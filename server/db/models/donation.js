@@ -15,10 +15,12 @@ module.exports = (sequelize, DataTypes) => {
   };
   Donation.init({
     donorName: DataTypes.STRING,
+    dateOfDonation: DataTypes.DATEONLY,
     amountInDollars: DataTypes.INTEGER,
     method: DataTypes.STRING,
     receiptProvided: DataTypes.BOOLEAN,
     receiptSentDate: DataTypes.DATEONLY,
+    receiptLocation: DataTypes.STRING,
     notes: DataTypes.TEXT
   }, {
     sequelize,

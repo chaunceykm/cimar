@@ -82,7 +82,7 @@ router.post('/login', validateEmailAndPassword, asyncHandler(async (req, res, ne
 //Get all Users
 router.get(
   "/",
-  // requireAuth,
+  requireAuth,
   asyncHandler(async (req, res) => {
     const users = await User.findAll({
       attributes: ["id", "userName", "email"],
