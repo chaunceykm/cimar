@@ -1,37 +1,18 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Donations', {
+    await queryInterface.createTable('DonationReceipts', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      donorId: {
+      donationId: {
         type: Sequelize.INTEGER
       },
-      dateOfDonation: {
-        type: Sequelize.DATEONLY
-      },
-      amountInDollars: {
-        type: Sequelize.INTEGER
-      },
-      method: {
+      receiptLocation: {
         type: Sequelize.STRING
-      },
-      receiptId: {
-        type: Sequelize.INTEGER
-      },
-      receiptProvided: {
-        type: Sequelize.BOOLEAN
-      },
-      receiptSentDate: {
-        type: Sequelize.DATEONLY
-      },
-      
-      notes: {
-        type: Sequelize.TEXT
       },
       createdAt: {
         allowNull: false,
@@ -44,6 +25,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Donations');
+    await queryInterface.dropTable('DonationReceipts');
   }
 };

@@ -23,13 +23,13 @@ router.get(
     const donations = await Donation.findAll({
       attributes: [
         "id",
-        "donorName",
+        "donorId",
         "dateOfDonation",
         "amountInDollars",
         "method",
+        "receiptId",
         "receiptProvided",
         "receiptSentDate",
-        "receiptLocation",
         "notes",
       ],
     });
@@ -43,13 +43,13 @@ router.get(
   asyncHandler(async (req, res) => {
     const donation = await Donation.findByPk(req.params.id, {
       attributes: [
-        "donorName",
+        "donorId",
         "dateOfDonation",
         "amountInDollars",
         "method",
+        "receiptId",
         "receiptProvided",
         "receiptSentDate",
-        "receiptLocation",
         "notes",
       ],
     });
@@ -66,23 +66,23 @@ router.post(
   requireAuth,
   asyncHandler(async (req, res) => {
     const {
-      donorName,
+      donorId,
       dateOfDonation,
       amountInDollars,
       method,
+      receiptId,
       receiptProvided,
       receiptSentDate,
-      receiptLocation,
       notes,
     } = req.body;
     const donation = await Donation.create({
-      donorName,
+      donorId,
       dateOfDonation,
       amountInDollars,
       method,
+      receiptId,
       receiptProvided,
       receiptSentDate,
-      receiptLocation,
       notes,
     });
     if (res.status === 200) res.json({ donation });
@@ -98,25 +98,25 @@ router.put(
   asyncHandler(async (req, res) => {
     const donation = await Donation.findByPk(req.params.id, {
       attributes: [
-        "donorName",
+        "donorId",
         "dateOfDonation",
         "amountInDollars",
         "method",
+        "receiptId",
         "receiptProvided",
         "receiptSentDate",
-        "receiptLocation",
         "notes",
       ],
     });
     if (donation) {
       await donation.update({
-        donorName: req.body.donorName,
+        donorId: req.body.donorId,
         dateOfDonation: req.body.dateOfDonation,
         amountInDollars: req.body.amountInDollars,
         method: req.body.method,
+        receiptId: req.body.receiptId,
         receiptProvided: req.body.receiptProvided,
         receiptSentDate: req.body.receiptSentDate,
-        receiptLocation: req.body.receiptLocation,
         notes: req.body.notes,
       });
       res.json({ donation });
