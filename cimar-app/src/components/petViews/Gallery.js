@@ -12,19 +12,12 @@ import {
   Radio,
   FormControlLabel,
   Checkbox,
-  SvgIcon,
   Icon,
-  IconButton,
   Button,
-  GridListTile,
-  ListSubheader,
-  GridList,
-  GridListTileBar,
   CardContent,
   CardMedia,
   CardActions,
   CardActionArea,
-  Avatar,
 } from "@material-ui/core";
 import { Favorite, House, Info } from "@material-ui/icons";
 import cat from "../../assets/cat.png";
@@ -59,29 +52,6 @@ const useStyles = makeStyles((theme) => ({
     color: "black",
   },
 }));
-
-function CatIcon(props) {
-  return (
-    <SvgIcon {...props}>
-      <path m={cat} />
-    </SvgIcon>
-  );
-}
-function DogIcon(props) {
-  return (
-    <SvgIcon {...props}>
-      <path m={dog} />
-    </SvgIcon>
-  );
-}
-
-function ChildrenIcon(props) {
-  return (
-    <SvgIcon {...props}>
-      <path m={children} />
-    </SvgIcon>
-  );
-}
 
 export const Gallery = () => {
   const classes = useStyles();
@@ -351,7 +321,7 @@ export const Gallery = () => {
       </Grid>
       <Grid item container className={classes.gallery} xs={10} spacing={2}>
         {petData.map((petObject, key) => {
-          key = { key };
+          key={petData,key};
           return getPet(petObject);
         })}
       </Grid>

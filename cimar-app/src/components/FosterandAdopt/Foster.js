@@ -16,8 +16,9 @@ const useStyles = makeStyles((theme) => ({
     width: '100px'
   },
   collage: {
-    maxHeight: '900px',
-    paddingRight: '5px'
+    height: '100vh',
+    paddingRight: '5px',
+    boxShadow: '-8px 0 8px -6px black'
 
     
   }
@@ -67,7 +68,7 @@ export const Foster = () => {
           Application
         </Button>
       </Grid>
-      <Grid item container justify='flex-end' xs>
+      <Grid item container justify='flex-end' xs={8}>
         <img src={collage} alt="dogs"className={classes.collage}/>
       </Grid>
     </Grid>

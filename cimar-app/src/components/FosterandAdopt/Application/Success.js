@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const FeaturedPet = () => {
+export const Success = () => {
   return (
     <div>
       

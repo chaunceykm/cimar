@@ -38,16 +38,7 @@ export const Footer = () => {
           &#169; 2020 "Cuz i Matter" Animal Rescue | P.O. Box 3751,
           Pflugerville, TX 78691
         </Typography>
-        <Grid container justify='center' item xs={12}>
-          <IconButton
-            component="a"
-            href="https://wwww.facebook.com/cuzimatteranimalrescue/?ref=br_rs"
-            target="_blank"
-          >
-            <Facebook className={classes.listItem} />
-            Visit us on Facebook!
-          </IconButton>
-        </Grid>
+        
       </Grid>
 
       {/* <Grid

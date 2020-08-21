@@ -1,78 +1,106 @@
-import React, {useState} from 'react'
-import * as Methods from "./DonateMethod";
-import { Default } from "./Default";
+import React, { useState } from "react";
+import PropTypes from "prop-types";
+import { makeStyles } from "@material-ui/core/styles";
+import { Tabs, Typography, Box, Grid, AppBar, Tab } from "@material-ui/core";
+import { AmazonSmile } from "./AmazonSmile";
+import { PetMeds } from "./PetMeds";
+import { Monetary } from "./Monetary";
+import { Sponsorship } from "./Sponsorship";
+import { Items } from "./Items";
+import thankyouDog from '../../assets/thankYouDog.jpg'
 
-const methods = [
-  {
-    id: "AmazonSmile",
-    name: "Amazon Smile",
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box p={2}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
+}
+
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.any.isRequired,
+  value: PropTypes.any.isRequired,
+};
+
+function a11yProps(index) {
+  return {
+    id: `simple-tab-${index}`,
+    "aria-controls": `simple-tabpanel-${index}`,
+  };
+}
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+    backgroundColor: theme.palette.background.paper,
+    zIndex: 1,
   },
-  {
-    id: "PetMeds",
-    name: "PetMeds.com",
+  image: {
+    boxShadow: "-8px 0 8px -6px black",
   },
-  {
-    id: "Monetary",
-    name: "Monetary Donations",
-  },
-  {
-    id: "Items",
-    name: "Items We Need",
-  },
-  {
-    id: "Sponsorship",
-    name: "Sponsorship",
-  },
-];
+  appBar: {
+    width: '100%'
+  }
+}));
 
 export const Donate = () => {
-  const [method, setMethod] = useState("");
+  const classes = useStyles();
+  const [value, setValue] = useState(0);
 
-  const renderMethod = (method) => {
-    switch (method) {
-      case "AmazonSmile":
-        return <Methods.AmazonSmile />;
-      case "PetMeds":
-        return <Methods.PetMeds />;
-      case "Items":
-        return <Methods.Items />;
-      case "Monetary":
-        return <Methods.Monetary />;
-      case "Sponsorship":
-        return <Methods.Sponsorship />;
-      default:
-        return <Default />;
-    }
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
   };
+
   return (
-    <div className="donation__info-container">
-      <h2>There are so many ways you can help CiMAR save lives!</h2>
-      <p className="italic">
-        Because CiMAR is a 501(c)(3) organization, all your donations are tax
-        deductible. <br />
-        <a href="/contact">Contact us</a> for a donation receipt.
-      </p>
-      <p>Click on the buttons below to learn more!</p>
-      <div className="donation__static-content">
-        <div>
-          <ul>
-            {methods.map(({ id, name }) => (
-              <li key={id}>
-                <button
-                  id={id}
-                  onClick={(e) => {
-                    setMethod(e.target.id);
-                  }}
-                  value={method}
-                >
-                  {name}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-      <div className="donation__method-container">{renderMethod(method)}</div>
-    </div>
+    <Grid className={classes.root}>
+      <AppBar position="static" className={classes.appBar}>
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          aria-label="simple tabs example"
+        >
+          <Tab label="Amazon Smile" {...a11yProps(0)} />
+          <Tab label="PetMeds.com" {...a11yProps(1)} />
+          <Tab label="Monetary" {...a11yProps(2)} />
+          <Tab label="Sponsorship" {...a11yProps(3)} />
+          <Tab label="Items We Need" {...a11yProps(4)} />
+        </Tabs>
+      </AppBar>
+      <Grid container item xs={12}>
+        <Grid item container xs={6}>
+          <TabPanel value={value} index={0}>
+            <AmazonSmile />
+          </TabPanel>
+          <TabPanel value={value} index={1}>
+            <PetMeds />
+          </TabPanel>
+          <TabPanel value={value} index={2}>
+            <Monetary />
+          </TabPanel>
+          <TabPanel value={value} index={3}>
+            <Sponsorship />
+          </TabPanel>
+          <TabPanel value={value} index={4}>
+            <Items />
+          </TabPanel>
+        </Grid>
+        <Grid item container xs={6} >
+          <img src={thankyouDog} alt="dog with thank you card" className={classes.image}/>
+        </Grid>
+      </Grid>
+    </Grid>
   );
 };

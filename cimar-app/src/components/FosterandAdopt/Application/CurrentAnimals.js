@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const Application = () => {
+export const CurrentAnimals = () => {
   return (
     <div>
       

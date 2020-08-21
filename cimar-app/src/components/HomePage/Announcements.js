@@ -43,9 +43,8 @@ export const Announcements = () => {
         {link ? (
           <Typography variant="body2">
             Click link for more info!
-            <IconButton component="a">
+            <IconButton component="a" href={link}>
               <Link />
-              {link}
             </IconButton>
           </Typography>
         ) : null}
