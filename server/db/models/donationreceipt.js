@@ -11,11 +11,11 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      DonationReceipt.belongsTo(models.Donation, { foreignKey: 'receiptId'})
     }
   };
   DonationReceipt.init({
-    donationId: DataTypes.INTEGER,
-    receiptLocation: DataTypes.STRING
+    fileLocation: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'DonationReceipt',

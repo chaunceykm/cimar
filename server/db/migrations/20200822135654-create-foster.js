@@ -1,57 +1,43 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Pets', {
+    await queryInterface.createTable('Fosters', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      name: {
+      firstName: {
         type: Sequelize.STRING
       },
-      breed: {
+      lastName: {
         type: Sequelize.STRING
       },
-      size: {
+      email: {
         type: Sequelize.STRING
       },
-      age: {
+      phoneNumber: {
         type: Sequelize.STRING
       },
-      sex: {
+      address1: {
         type: Sequelize.STRING
       },
-      intakeDate: {
-        type: Sequelize.DATE
+      address2: {
+        type: Sequelize.STRING
+      },
+      cityStateZip: {
+        type: Sequelize.STRING
+      },
+      fosterAppId: {
+        type: Sequelize.INTEGER,
+        references: {model: 'FosterApps', key: 'id'}
       },
       status: {
         type: Sequelize.STRING
       },
-      photos: {
-        type: Sequelize.ARRAY(Sequelize.TEXT)
-      },
-      videos: {
-        type: Sequelize.ARRAY(Sequelize.TEXT)
-      },
       notes: {
         type: Sequelize.TEXT
-      },
-      healthConcerns: {
-        type: Sequelize.BOOLEAN
-      },
-      houseBroken: {
-        type: Sequelize.BOOLEAN
-      },
-      goodWithDogs: {
-        type: Sequelize.BOOLEAN
-      },
-      goodWithCats: {
-        type: Sequelize.BOOLEAN
-      },
-      goodWithChildren: {
-        type: Sequelize.BOOLEAN
       },
       createdAt: {
         allowNull: false,
@@ -64,6 +50,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Pets');
+    await queryInterface.dropTable('Fosters');
   }
 };

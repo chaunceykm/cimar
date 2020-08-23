@@ -1,18 +1,19 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('DonationReceipts', {
+    await queryInterface.createTable('FeaturedPets', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      donationId: {
-        type: Sequelize.INTEGER
+      petId: {
+        type: Sequelize.INTEGER,
+        references: {model: 'Pets', key: 'id'}
       },
-      receiptLocation: {
-        type: Sequelize.STRING
+      description: {
+        type: Sequelize.TEXT
       },
       createdAt: {
         allowNull: false,
@@ -25,6 +26,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('DonationReceipts');
+    await queryInterface.dropTable('FeaturedPets');
   }
 };

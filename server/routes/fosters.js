@@ -30,8 +30,8 @@ router.get(
         "address1",
         "address2",
         "cityStateZip",
+        "fosterAppId",
         "status",
-        "fosterPets",
         "notes"
       ],
     });
@@ -52,8 +52,8 @@ router.get(
         "address1",
         "address2",
         "cityStateZip",
+        "fosterAppId",
         "status",
-        "fosterPets",
         "notes"
       ],
     });
@@ -76,8 +76,8 @@ router.post(
       address1,
       address2,
       cityStateZip,
+      fosterAppId,
       status,
-      fosterPets,
       notes
     } = req.body;
     const foster = await Foster.create({
@@ -88,8 +88,8 @@ router.post(
       address1,
       address2,
       cityStateZip,
+      fosterAppId,
       status,
-      fosterPets,
       notes
     });
     if (res.status === 200) res.json({ foster });
@@ -112,8 +112,8 @@ router.put(
         "address1",
         "address2",
         "cityStateZip",
+        "fosterAppId",
         "status",
-        "fosterPets",
         "notes"
       ],
     });
@@ -126,8 +126,8 @@ router.put(
         address1: req.body.address1,
         address2: req.body.address2,
         cityStateZip: req.body.cityStateZip,
+        fosterAppId: req.body.fosterAppId,
         status: req.body.status,
-        fosterPets: req.body.fosterPets,
         notes: req.body.notes
       });
       res.json({ foster });

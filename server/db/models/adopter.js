@@ -11,7 +11,10 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Adopter.hasMany(models.AdoptApp, { foreignKey: 'id' })
+      Adopter.belongsTo(models.Pet, {foreignKey: 'adopterId'})
     }
+
   };
   Adopter.init({
     firstName: DataTypes.STRING,
@@ -21,8 +24,8 @@ module.exports = (sequelize, DataTypes) => {
     address1: DataTypes.STRING,
     address2: DataTypes.STRING,
     cityStateZip: DataTypes.STRING,
-    status: DataTypes.STRING,
-    adoptedPets: DataTypes.ARRAY(DataTypes.NUMBER)
+    adoptAppId: DataTypes.INTEGER,
+    status: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Adopter',

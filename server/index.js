@@ -13,11 +13,12 @@ const expensesRouter = require("./routes/expenses");
 const eventsRouter = require("./routes/events");
 const donorsRouter = require("./routes/donors");
 const donationsRouter = require("./routes/donations");
-const applicationsRouter = require("./routes/applications");
 const announcementRouter = require("./routes/announcements");
 const adoptersRouter = require("./routes/adopters");
 const featuredPetRouter = require("./routes/featuedPets");
 const donationReceiptRouter = require('./routes/donationReceipts')
+const adoptionAppRouter = require('./routes/adoptionApps')
+const fosterAppRouter = require('./routes/fosterApps')
 
 const app = express();
 
@@ -34,11 +35,12 @@ app.use("/api/expenses", expensesRouter);
 app.use("/api/events", eventsRouter);
 app.use("/api/donors", donorsRouter);
 app.use("/api/donations", donationsRouter);
-app.use("/api/applications", applicationsRouter);
 app.use("/api/adopters", adoptersRouter);
 app.use("/api/announcements", announcementRouter);
 app.use("/api/featuredPets", featuredPetRouter);
-app.use('/api/donations/receipts', donationReceiptRouter)
+app.use('/api/donations/receipts', donationReceiptRouter);
+app.use('/api/applications/foster', fosterAppRouter)
+app.use('/api/applications/adoption', adoptionAppRouter)
 
 app.use((req, res, next) => {
   const err = new Error("The requested resource could not be found.");

@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Application extends Model {
+  class FosterApp extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -11,19 +11,16 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      FosterApp.belongsTo(models.Foster, {foreignKey: 'fosterAppId'})
     }
   };
-  Application.init({
-    fullName: DataTypes.STRING,
-    foster: DataTypes.BOOLEAN,
-    adopt: DataTypes.BOOLEAN,
-    submittedAt: DataTypes.DATE,
-    petId: DataTypes.INTEGER,
+  FosterApp.init({
+    submittedAt: DataTypes.DATEONLY,
     status: DataTypes.STRING,
-    fileLocation: DataTypes.TEXT
+    fileLocation: DataTypes.STRING
   }, {
     sequelize,
-    modelName: 'Application',
+    modelName: 'FosterApp',
   });
-  return Application;
+  return FosterApp;
 };

@@ -30,8 +30,8 @@ router.get(
         "address1",
         "address2",
         "cityStateZip",
+        "adoptAppId",
         "status",
-        "adoptedPets",
       ],
     });
     res.json({ adopters });
@@ -51,8 +51,8 @@ router.get(
         "address1",
         "address2",
         "cityStateZip",
+        "adoptAppId",
         "status",
-        "adoptedPets",
       ],
     });
     if (adopter) {
@@ -74,8 +74,8 @@ router.post(
       address1,
       address2,
       cityStateZip,
+      adoptAppId,
       status,
-      adoptedPets,
     } = req.body;
     const adopter = await Adopter.create({
       firstName,
@@ -85,8 +85,8 @@ router.post(
       address1,
       address2,
       cityStateZip,
+      adoptAppId,
       status,
-      adoptedPets,
     });
     if (res.status === 200) res.json({ adopter });
     else {
@@ -108,8 +108,8 @@ router.put(
         "address1",
         "address2",
         "cityStateZip",
+        "adoptAppId",
         "status",
-        "adoptedPets",
       ],
     });
     if (adopter) {
@@ -121,8 +121,8 @@ router.put(
         address1: req.body.address1,
         address2: req.body.address2,
         cityStateZip: req.body.cityStateZip,
+        adoptAppId: req.body.adoptAppId,
         status: req.body.status,
-        adoptedPets: req.body.adoptedPets,
       });
       res.json({ adopter });
     } else {

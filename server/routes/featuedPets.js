@@ -20,7 +20,7 @@ router.get(
   "/",
   asyncHandler(async (req, res) => {
     const featuredPets = await FeaturedPet.findAll({
-      attributes: ["id", "petId", "petName", "description", "photo"],
+      attributes: ["id", "petId", "description", "photo"],
     });
     res.json({ featuredPets });
   })
@@ -31,7 +31,7 @@ router.get(
   "/:id(\\d+)",
   asyncHandler(async (req, res) => {
     const featuredPet = await FeaturedPet.findByPk(req.params.id, {
-      attributes: ["petId", "petName", "description", "photo"],
+      attributes: ["petId",  "description", "photo"],
     });
     if (featuredPet) {
       res.json({ featuredPet });
@@ -45,10 +45,9 @@ router.post(
   "/",
   requireAuth,
   asyncHandler(async (req, res) => {
-    const { petId, petName, description, photo } = req.body;
+    const { petId,  description, photo } = req.body;
     const featuredPet = await FeaturedPet.create({
       petId,
-      petName,
       description,
       photo,
     });
@@ -64,12 +63,11 @@ router.put(
   requireAuth,
   asyncHandler(async (req, res) => {
     const featuredPet = await FeaturedPet.findByPk(req.params.id, {
-      attributes: ["petId", "petName", "description", "photo"],
+      attributes: ["petId",  "description", "photo"],
     });
     if (featuredPet) {
       await featuredPet.update({
         petId: req.body.petId,
-        petName: req.body.petName,
         description: req.body.description,
         photo: req.body.photo,
       });

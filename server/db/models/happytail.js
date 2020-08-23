@@ -13,15 +13,18 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   };
-  HappyTail.init({
-    petName: DataTypes.STRING,
-    ownerName: DataTypes.STRING,
-    adoptedDate: DataTypes.DATEONLY,
-    photos: DataTypes.ARRAY(DataTypes.TEXT),
-    story: DataTypes.TEXT
-  }, {
-    sequelize,
-    modelName: 'HappyTail',
-  });
+  HappyTail.init(
+    {
+      petName: DataTypes.STRING,
+      ownerName: DataTypes.STRING,
+      adoptedDate: DataTypes.DATEONLY,
+      photos: DataTypes.ARRAY(DataTypes.STRING),
+      story: DataTypes.TEXT,
+    },
+    {
+      sequelize,
+      modelName: "HappyTail",
+    }
+  );
   return HappyTail;
 };

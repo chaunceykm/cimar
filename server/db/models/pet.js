@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Pet extends Model {
     /**
@@ -11,27 +9,35 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Pet.hasMany(models.Foster, { foreignKey: "id" });
+      Pet.hasMany(models.Adopter, { foreignKey: "id" });
+      Pet.belongsTo(models.FeaturedPet, { foreignKey: "petId" });
     }
-  };
-  Pet.init({
-    name: DataTypes.STRING,
-    breed: DataTypes.STRING,
-    size: DataTypes.STRING,
-    age: DataTypes.STRING,
-    sex: DataTypes.STRING,
-    intakeDate: DataTypes.DATE,
-    status: DataTypes.STRING,
-    photos: DataTypes.ARRAY(DataTypes.TEXT),
-    videos: DataTypes.ARRAY(DataTypes.TEXT),
-    notes: DataTypes.TEXT,
-    healthConcerns: DataTypes.BOOLEAN,
-    houseBroken: DataTypes.BOOLEAN,
-    goodWithDogs: DataTypes.BOOLEAN,
-    goodWithCats: DataTypes.BOOLEAN,
-    goodWithChildren: DataTypes.BOOLEAN,
-  }, {
-    sequelize,
-    modelName: 'Pet',
-  });
+  }
+  Pet.init(
+    {
+      name: DataTypes.STRING,
+      breed: DataTypes.STRING,
+      size: DataTypes.STRING,
+      age: DataTypes.STRING,
+      sex: DataTypes.STRING,
+      intakeDate: DataTypes.DATE,
+      status: DataTypes.STRING,
+      fosterId: DataTypes.INTEGER,
+      adopterId: DataTypes.INTEGER,
+      photos: DataTypes.ARRAY(DataTypes.STRING),
+      videos: DataTypes.ARRAY(DataTypes.STRING),
+      notes: DataTypes.TEXT,
+      healthConcerns: DataTypes.BOOLEAN,
+      houseBroken: DataTypes.BOOLEAN,
+      goodWithDogs: DataTypes.BOOLEAN,
+      goodWithCats: DataTypes.BOOLEAN,
+      goodWithChildren: DataTypes.BOOLEAN,
+    },
+    {
+      sequelize,
+      modelName: "Pet",
+    }
+  );
   return Pet;
 };

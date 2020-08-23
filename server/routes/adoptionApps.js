@@ -23,11 +23,7 @@ router.get(
     const applications = await Application.findAll({
       attributes: [
         "id",
-        "fullName",
-        "foster",
-        "adopt",
         "submittedAt",
-        "petId",
         "status",
         "fileLocation",
       ],
@@ -43,11 +39,7 @@ router.get(
   asyncHandler(async (req, res) => {
     const application = await Application.findByPk(req.params.id, {
       attributes: [
-        "fullName",
-        "foster",
-        "adopt",
         "submittedAt",
-        "petId",
         "status",
         "fileLocation",
       ],
@@ -64,20 +56,12 @@ router.post(
   "/",
   asyncHandler(async (req, res) => {
     const {
-      fullName,
-      foster,
-      adopt,
       submittedAt,
-      petId,
       status,
       fileLocation,
     } = req.body;
     const application = await Application.create({
-      fullName,
-      foster,
-      adopt,
       submittedAt,
-      petId,
       status,
       fileLocation,
     });
@@ -94,22 +78,14 @@ router.put(
   asyncHandler(async (req, res) => {
     const application = await Application.findByPk(req.params.id, {
       attributes: [
-        "fullName",
-        "foster",
-        "adopt",
         "submittedAt",
-        "petId",
         "status",
         "fileLocation",
       ],
     });
     if (application) {
       await application.update({
-        fullName: req.body.fullName,
-        foster: req.body.foster,
-        adopt: req.body.adopt,
         submittedAt: req.body.submittedAt,
-        petId: req.body.petId,
         status: req.body.status,
         fileLocation: req.body.fileLocation,
       });

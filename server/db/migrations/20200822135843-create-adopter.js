@@ -29,11 +29,12 @@ module.exports = {
       cityStateZip: {
         type: Sequelize.STRING
       },
+      adoptAppId: {
+        type: Sequelize.INTEGER,
+        references: {model: 'AdoptApps', key: 'id'}
+      },
       status: {
         type: Sequelize.STRING
-      },
-      adoptedPets: {
-        type: Sequelize.ARRAY(Sequelize.INTEGER)
       },
       createdAt: {
         allowNull: false,

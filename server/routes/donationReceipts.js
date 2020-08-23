@@ -23,7 +23,6 @@ router.get(
     const receipts = await DonationReciept.findAll({
       attributes: [
         "id",
-        "donationId",
         "receiptLocation",
       ],
     });
@@ -36,7 +35,7 @@ router.get(
   requireAuth,
   asyncHandler(async (req, res) => {
     const receipt = await DonationReceipt.findByPk(req.params.id, {
-      attributes: ["donationId", "receiptLocation"],
+      attributes: ["receiptLocation"],
     });
     if (receipt) {
       res.json({ receipt });
@@ -51,11 +50,9 @@ router.post(
   requireAuth,
   asyncHandler(async (req, res) => {
     const {
-      donationId,
       receiptLocation
     } = req.body;
     const receipt = await DonationReciept.create({
-      donationId,
       receiptLocation,
     });
     if (res.status === 200) res.json({ receipt });
@@ -70,11 +67,10 @@ router.put(
   requireAuth,
   asyncHandler(async (req, res) => {
     const receipt = await DonationReciept.findByPk(req.params.id, {
-      attributes: ["donationId", "receiptLocation"],
+      attributes: ["receiptLocation"],
     });
     if (receipt) {
       await receipt.update({
-        donationId: req.body.donationId,
         receiptLocation: req.body.receiptLocation
       });
       res.json({ receipt });
