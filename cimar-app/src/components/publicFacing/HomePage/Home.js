@@ -2,7 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Grid, Typography, Divider } from "@material-ui/core";
 import {} from "@material-ui/icons";
-import smilingDog from "../../assets/smilingDog.jpg";
+import smilingDog from "../../../assets/smilingDog.jpg";
 import { Announcements } from "./Announcements";
 import { FeaturedPet } from "./FeaturedPet";
 

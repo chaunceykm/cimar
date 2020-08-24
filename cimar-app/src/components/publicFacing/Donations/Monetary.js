@@ -1,7 +1,27 @@
 import React from "react";
-import Paypal from '../../assets/paypal.jpg';
+import Paypal from '../../../assets/paypal.jpg';
+import { makeStyles } from "@material-ui/core/styles";
+import {
+  Grid,
+  Typography,
+  Icon,
+  Card,
+  CardMedia,
+  CardContent,
+} from "@material-ui/core";
+import {} from "@material-ui/icons";
+
+const useStyles = makeStyles((theme) => ({
+  root: {},
+  links: {
+    color: "#ba2214",
+  },
+  image: {},
+  heading: {},
+}));
 
 export const Monetary = () => {
+  const classes = useStyles();
   return (
     <div className= 'monetary__wrapper'>
       <h2>Monetary Donations Directly to CiMAR</h2>

@@ -7,9 +7,7 @@ a {
 a:hover {
 font-weight: 700;
 }
-a:active {
-text-decoration: underline;
-}
+
 
 main {
   margin-top: 223px;

@@ -1,6 +1,15 @@
-import React from 'react'
-import {} from "@material-ui/core/styles";
-import {} from "@material-ui/core";
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import { Grid, List, ListItem, ListItemText, Link } from "@material-ui/core";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    padding: '15px'
+  },
+  listLinks: {
+    color: theme.palette.primary.main,
+  },
+}));
 
 const groomersAndBoarders = [
   {
@@ -27,15 +36,23 @@ const groomersAndBoarders = [
   },
 ];
 export const GroomingBoarding = () => {
+  const classes = useStyles();
   return (
-    <div className='grooming__container'>
-      <ul className='grooming__links'>
+    <Grid className={classes.root}>
+      <List className={classes.listItem}>
         {groomersAndBoarders.map(({ id, name, url }) => (
-          <li key={id}>
-            <a href={url}>{name}</a>
-          </li>
+          <ListItem key={id}>
+            <Link
+              href={url}
+              target="_blank"
+              rel="noreferrer"
+              className={classes.listLinks}
+            >
+              {name}
+            </Link>
+          </ListItem>
         ))}
-      </ul>
-    </div>
+      </List>
+    </Grid>
   );
-}
+};

@@ -2,7 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Grid, List, ListItem, Button, Typography } from "@material-ui/core";
 import {Check} from "@material-ui/icons";
-import hank from "../../assets/hank.jpg";
+import hank from "../../../assets/hank.jpg";
 
 const useStyles = makeStyles((theme) => ({
   root: {},

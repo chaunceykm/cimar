@@ -4,19 +4,19 @@ import { CssBaseline } from "@material-ui/core";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import { theme } from "./theme";
 import { ProtectedRoute } from "./components/auth/ProtectedRoute";
-import { Home } from "./components/HomePage/Home";
-import { Gallery } from "./components/petViews/Gallery";
-import { PetProfile } from "./components/petViews/PetProfile";
+import { Home } from "./components/publicFacing/HomePage/Home";
+import { Gallery } from "./components/publicFacing/petViews/Gallery";
+import { PetProfile } from "./components/publicFacing/petViews/PetProfile";
 import { Login } from "./components/auth/Login";
 import { AdminDashboard } from "./components/AdminDashboard/AdminDashboard";
-import { About } from "./components/About";
-import { ContactUs } from "./components/ContactUs";
-import { Calendar } from "./components/calendar/Calendar";
-import { Foster } from "./components/FosterandAdopt/Foster";
-import { Adopt } from "./components/FosterandAdopt/Adopt";
-import { Donate } from "./components/Donations/Donate";
-import { Application } from "./components/FosterandAdopt/Application/Application";
-import { HappyTails } from "./components/HappyTails";
+import { About } from "./components/publicFacing/About";
+import { ContactUs } from "./components/publicFacing/ContactUs";
+import { Calendar } from "./components/publicFacing/calendar/Calendar";
+import { Foster } from "./components/publicFacing/FosterandAdopt/Foster";
+import { Adopt } from "./components/publicFacing/FosterandAdopt/Adopt";
+import { Donate } from "./components/publicFacing/Donations/Donate";
+import { Application } from "./components/publicFacing/FosterandAdopt/Application/Application";
+import { HappyTails } from "./components/publicFacing/HappyTails";
 import { AddPet } from "./components/AdminDashboard/AddPet";
 import { EditPet } from "./components/AdminDashboard/EditPet";
 import { Messages } from "./components/AdminDashboard/Messages";
@@ -26,12 +26,10 @@ import { ViewFosters } from "./components/AdminDashboard/ViewFosters";
 import { ViewDonors } from "./components/AdminDashboard/ViewDonors";
 import { ViewExpenses } from "./components/AdminDashboard/ViewExpenses";
 import { ViewAdopters } from "./components/AdminDashboard/ViewAdopters";
-import { Resources } from "./components/Resources/Resources";
-
+import { Resources } from "./components/publicFacing/Resources/Resources";
 import { CimarContext } from "./context/CimarContext";
-import { NavBar } from "./components/navigation/NavBar";
-import { Footer } from "./components/Footer";
-import { Layout } from "./Layout";
+import { AdminLayout } from "./AdminLayout";
+import { MainLayout } from "./MainLayout";
 import "fontsource-noto-sans-jp";
 
 function App() {
@@ -40,26 +38,39 @@ function App() {
     <MuiThemeProvider theme={theme}>
       <Router>
         <CssBaseline>
-          <NavBar />
           <main>
             <Switch>
-              <Route exact path="/" component={Home} />
-              <Route exact path="/pets" component={Gallery} />
-              <Route path="/pets/:id" component={PetProfile} />
-              <Route path="/happy-tails" component={HappyTails} />
-              <Route path="/events" component={Calendar} />
-              <Route path="/contact" component={ContactUs} />
-              <Route path="/resources" component={Resources} />
-              <Route path="/donate" component={Donate} />
-              <Route path="/about" component={About} />
-              <Route exact path="/adopt" component={Adopt} />
-              <Route exact path="/foster" component={Foster} />
-              <Route path="/login" component={Login} />
-              <Route path="/admin" component={AdminDashboard} />
-              <Route path="/application" component={Application} />
+              <Route>
+                <MainLayout>
+                  <Switch>
+                    <Route exact path="/" component={Home} />
+                    <Route exact path="/pets" component={Gallery} />
+                    <Route path="/pets/profile" component={PetProfile} />
+                    <Route path="/happy-tails" component={HappyTails} />
+                    <Route path="/events" component={Calendar} />
+                    <Route path="/contact" component={ContactUs} />
+                    <Route path="/resources" component={Resources} />
+                    <Route path="/donate" component={Donate} />
+                    <Route path="/about" component={About} />
+                    <Route exact path="/adopt" component={Adopt} />
+                    <Route exact path="/foster" component={Foster} />
+                    <Route path="/application" component={Application} />
+                    <Route path="/login" component={Login} />
+                  </Switch>
+                </MainLayout>
+              </Route>
+              <Route path="/admin/:path?" exact>
+                <AdminLayout>
+                  <Switch>
+                    <ProtectedRoute path="/admin" component={AdminDashboard} />
+                    <ProtectedRoute path="/admin/pets/add" component={AddPet} />
+                    <ProtectedRoute path="/admin/pets/edit" component={EditPet} />
+                    <ProtectedRoute path="/admin/users/add" component={AddUser} />
+                  </Switch>
+                </AdminLayout>
+              </Route>
             </Switch>
           </main>
-          <Footer />
         </CssBaseline>
       </Router>
     </MuiThemeProvider>

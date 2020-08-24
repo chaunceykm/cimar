@@ -1,7 +1,27 @@
 import React from "react";
-import Bones from "../../assets/dogbones.jpg";
+import Bones from "../../../assets/dogbones.jpg";
+import { makeStyles } from "@material-ui/core/styles";
+import {
+  Grid,
+  Typography,
+  Icon,
+  Card,
+  CardMedia,
+  CardContent,
+} from "@material-ui/core";
+import {} from "@material-ui/icons";
+
+const useStyles = makeStyles((theme) => ({
+  root: {},
+  links: {
+    color: "#ba2214",
+  },
+  image: {},
+  heading: {},
+}));
 
 export const Items = () => {
+  const classes = useStyles();
   return (
     <div className="items_container">
       <div className="items__content-wrapper">
@@ -12,18 +32,24 @@ export const Items = () => {
           </div>
         </div>
         <div className="items__list-wrapper">
-      <h3>Can I donate items instead?</h3>
+          <h3>Can I donate items instead?</h3>
           <p>
             We are always in need of supplies to care for the animals we rescue.
-            <br/> Please take a look at our wish list below or check out our wish list
-            on
-            <a href="https://www.amazon.com/gp/registry/wishlist/139F95Z2BKCKW/ref=cm_sw_su_w">
+            <br /> Please take a look at our wish list below or check out our
+            wish list on{' '}
+            <a
+              className={classes.links}
+              href="https://www.amazon.com/gp/registry/wishlist/139F95Z2BKCKW/ref=cm_sw_su_w"
+            >
               Amazon
             </a>
-            . <br/> You can also <a href="/contact">contact us</a> for information on
-            other needs.
+            . <br /> You can also{" "}
+            <a className={classes.links} href="/contact">
+              contact us
+            </a>{" "}
+            for information on other needs.
           </p>
-          <h4 >Dog & Puppy Needs</h4>
+          <h4>Dog & Puppy Needs</h4>
 
           <div>
             <ul>

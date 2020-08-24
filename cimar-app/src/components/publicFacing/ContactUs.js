@@ -10,7 +10,7 @@ import {
   Typography,
 } from "@material-ui/core";
 import {} from "@material-ui/icons";
-import agent from "../assets/agentDog.jpg";
+import agent from "../../assets/agentDog.jpg";
 
 const useStyles = makeStyles((theme) => ({
   root: {

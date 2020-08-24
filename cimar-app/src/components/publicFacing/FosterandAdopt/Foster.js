@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Grid, Button, Typography } from "@material-ui/core";
-import collage from '../../assets/collage.jpg'
+import collage from '../../../assets/collage.jpg'
 import {} from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({

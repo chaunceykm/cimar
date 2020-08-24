@@ -7,7 +7,7 @@ import { PetMeds } from "./PetMeds";
 import { Monetary } from "./Monetary";
 import { Sponsorship } from "./Sponsorship";
 import { Items } from "./Items";
-import thankyouDog from '../../assets/thankYouDog.jpg'
+import thankyouDog from "../../../assets/thankYouDog.jpg";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -47,12 +47,21 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     backgroundColor: theme.palette.background.paper,
     zIndex: 1,
+    width: "100%",
+    overflowX: 'hidden'
   },
   image: {
     boxShadow: "-8px 0 8px -6px black",
   },
   appBar: {
-    width: '100%'
+    width: "100%",
+    backgroundColor: 'white',
+    color: '#ba2214',
+    position: 'fixed'
+
+  },
+  panels: {
+    marginTop: '50px'
   }
 }));
 
@@ -66,21 +75,23 @@ export const Donate = () => {
 
   return (
     <Grid className={classes.root}>
-      <AppBar position="static" className={classes.appBar}>
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          aria-label="simple tabs example"
-        >
-          <Tab label="Amazon Smile" {...a11yProps(0)} />
-          <Tab label="PetMeds.com" {...a11yProps(1)} />
-          <Tab label="Monetary" {...a11yProps(2)} />
-          <Tab label="Sponsorship" {...a11yProps(3)} />
-          <Tab label="Items We Need" {...a11yProps(4)} />
-        </Tabs>
-      </AppBar>
+      <Grid item container xs={12}>
+        <AppBar position="static" className={classes.appBar}>
+          <Tabs
+            value={value}
+            onChange={handleChange}
+            aria-label="simple tabs example"
+          >
+            <Tab label="Amazon Smile" {...a11yProps(0)} />
+            <Tab label="PetMeds.com" {...a11yProps(1)} />
+            <Tab label="Monetary" {...a11yProps(2)} />
+            <Tab label="Sponsorship" {...a11yProps(3)} />
+            <Tab label="Items We Need" {...a11yProps(4)} />
+          </Tabs>
+        </AppBar>
+      </Grid>
       <Grid container item xs={12}>
-        <Grid item container xs={6}>
+        <Grid item container className={classes.panels} xs={6}>
           <TabPanel value={value} index={0}>
             <AmazonSmile />
           </TabPanel>
@@ -97,8 +108,12 @@ export const Donate = () => {
             <Items />
           </TabPanel>
         </Grid>
-        <Grid item container xs={6} >
-          <img src={thankyouDog} alt="dog with thank you card" className={classes.image}/>
+        <Grid item container xs={6}>
+          <img
+            src={thankyouDog}
+            alt="dog with thank you card"
+            className={classes.image}
+          />
         </Grid>
       </Grid>
     </Grid>

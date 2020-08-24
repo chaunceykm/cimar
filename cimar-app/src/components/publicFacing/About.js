@@ -10,8 +10,8 @@ import {
   ListItem,
   CardHeader,
 } from "@material-ui/core";
-import Kerri from "../assets/kerri.jpg";
-import Tony from "../assets/tony.jpg";
+import Kerri from "../../assets/kerri.jpg";
+import Tony from "../../assets/tony.jpg";
 
 const useStyles = makeStyles((theme) => ({
   root: {

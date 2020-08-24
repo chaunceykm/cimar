@@ -8,13 +8,9 @@ export const theme = createMuiTheme({
       main: "#ba2214",
     },
     secondary: {
-      main: "#D9cab3",
+      main: "#fff",
     },
-    /* full color span for reference:
-#90323d ===
-#000000 ===
-#D9cab3 ===
-*/
+   
   },
   typography: {
     fontFamily: "Noto Sans JP",

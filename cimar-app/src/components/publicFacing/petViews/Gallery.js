@@ -20,9 +20,9 @@ import {
   CardActionArea,
 } from "@material-ui/core";
 import { Favorite, House, Info } from "@material-ui/icons";
-import cat from "../../assets/cat.png";
-import dog from "../../assets/dog.png";
-import children from "../../assets/children.png";
+import cat from "../../../assets/cat.png";
+import dog from "../../../assets/dog.png";
+import children from "../../../assets/children.png";
 import Axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
     height: "100vh",
   },
   media: {
-    maxHeight: "150px",
+    maxHeight: "250px",
   },
   icon: {
     color: "black",
@@ -95,7 +95,7 @@ export const Gallery = () => {
           id: pet.id,
           name: pet.name,
           sex: pet.sex,
-          age: pet.age,
+          estDOB: pet.estDOB,
           breed: pet.breed,
           status: pet.status,
           size: pet.size,
@@ -116,7 +116,7 @@ export const Gallery = () => {
       id,
       name,
       sex,
-      age,
+      estDOB,
       breed,
       status,
       size,
@@ -136,7 +136,6 @@ export const Gallery = () => {
               className={classes.media}
               component="img"
               alt={name}
-              height="140"
               image={photos ? photos[0] : "../../assets/dog.png"}
               title={name}
             />
@@ -146,7 +145,7 @@ export const Gallery = () => {
               </Typography>
               <Typography>Status: {status}</Typography>
               <Typography>Sex: {sex}</Typography>
-              <Typography>Age: {age}</Typography>
+              <Typography>Est. DOB: {estDOB}</Typography>
               <Typography>Size: {size}</Typography>
               <Typography>Breed: {breed}</Typography>
             </CardContent>

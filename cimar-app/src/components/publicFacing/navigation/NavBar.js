@@ -118,12 +118,12 @@ export const NavBar = () => {
               </ListItem>
             </List>
           </Grid>
-          <Grid container  item xs={4}>
-            <ListItem style={{justifyContent: 'flex-end'}}>
+          <Grid container item xs={4}>
+            <ListItem style={{ justifyContent: "flex-end" }}>
               <Button
                 component="a"
                 className={classes.listItem}
-                
+                style={{ backgroundColor: "white", color: "#ba2214" }}
                 href="https://wwww.facebook.com/cuzimatteranimalrescue/?ref=br_rs"
                 target="_blank"
               >
