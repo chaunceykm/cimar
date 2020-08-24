@@ -8,10 +8,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      petId: {
-        type: Sequelize.INTEGER,
-        references: {model: 'Pets', key: 'id'}
-      },
+      
       description: {
         type: Sequelize.TEXT
       },

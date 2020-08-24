@@ -40,44 +40,52 @@ router.post(
   handleValidationErrors,
   requireAuth,
   asyncHandler(async (req, res) => {
-    const { firstName, lastName, email, password } = req.body;
+    const { firstName, lastName, email, password, role } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = await User.create({
       firstName,
       lastName,
       email,
       hashedPassword,
+      role,
     });
-    
+      const token = getUserToken(user);
+      res.status(201).json({
+        user: { id: user.id },
+        token,
+      });
   })
 );
 
 //Login As User
-router.post('/login', validateEmailAndPassword, asyncHandler(async (req, res, next) => {
-  const { email, password } = req.body;
-  const user = await User.findOne({
-    where: {
-      email,
+router.post(
+  "/login",
+  validateEmailAndPassword,
+  asyncHandler(async (req, res, next) => {
+    const { email, password } = req.body;
+    const user = await User.findOne({
+      where: {
+        email,
+      },
+    });
+    if (!user || !user.validatePassword(password)) {
+      const err = new Error("Login failed");
+      err.status = 401;
+      err.title = "Login failed";
+      err.errors = ["The provided credentials were invalid."];
+      return next(err);
+    }
+    if (user) {
+      const token = jwt.sign({ id: user.id }, secret, {
+        expiresIn: parseInt(expiresIn, 10),
+      });
+      const userId = user.id;
+      res.json({ token, userId });
+    } else {
+      res.send("Username or Password incorrect");
     }
   })
-  if (!user || !user.validatePassword(password)) {
-    const err = new Error("Login failed");
-    err.status = 401;
-    err.title = "Login failed";
-    err.errors = ["The provided credentials were invalid."];
-    return next(err);
-  }
-  if (user) {
-    const token = jwt.sign({ id: user.id }, secret, {
-      expiresIn: parseInt(expiresIn, 10),
-    });
-    const userId = user.id;
-    res.json({ token, userId });
-  } else {
-    res.send("Username or Password incorrect");
-  }
-}))
-
+);
 
 //Get all Users
 router.get(
@@ -97,7 +105,14 @@ router.get(
   requireAuth,
   asyncHandler(async (req, res, next) => {
     const user = await User.findByPk(req.params.id, {
-      attributes: ["firstName", "lastName", "userName", "email", "password"],
+      attributes: [
+        "firstName",
+        "lastName",
+        "userName",
+        "email",
+        "password",
+        "role",
+      ],
     });
     if (user) {
       res.json({ user });
@@ -113,7 +128,7 @@ router.put(
   requireAuth,
   asyncHandler(async (req, res, next) => {
     const user = await User.findByPk(req.params.id, {
-      attributes: ["firstName", "lastName", "email", "password"],
+      attributes: ["firstName", "lastName", "email", "password", "role"],
     });
 
     if (user) {
@@ -130,6 +145,7 @@ router.put(
         userName: req.body.userName,
         email: req.body.email,
         password: req.body.password,
+        role: req.body.role,
       });
       res.json({ user });
     } else {

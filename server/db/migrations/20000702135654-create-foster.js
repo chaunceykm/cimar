@@ -1,52 +1,53 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Adopters', {
+    await queryInterface.createTable("Fosters", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       firstName: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       lastName: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       email: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       phoneNumber: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       address1: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       address2: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       cityStateZip: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
-      adoptAppId: {
-        type: Sequelize.INTEGER,
-        references: {model: 'AdoptApps', key: 'id'}
-      },
+      
       status: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+      },
+      
+      notes: {
+        type: Sequelize.TEXT,
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Adopters');
+    await queryInterface.dropTable('Fosters');
   }
 };

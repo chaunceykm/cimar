@@ -17,31 +17,24 @@ module.exports = {
       size: {
         type: Sequelize.STRING,
       },
-      age: {
-        type: Sequelize.STRING,
+      estDOB: {
+        type: Sequelize.DATEONLY,
       },
       sex: {
         type: Sequelize.STRING,
       },
       intakeDate: {
-        type: Sequelize.DATE,
+        type: Sequelize.DATEONLY,
       },
       status: {
         type: Sequelize.STRING,
       },
-      fosterId: {
-        type: Sequelize.INTEGER,
-        references: { model: "Fosters", key: 'id' },
-      },
-      adopterId: {
-        type: Sequelize.INTEGER,
-        references: { model: "Adopters", key: 'id' },
-      },
+      
       photos: {
-        type: Sequelize.ARRAY(Sequelize.STRING),
+        type: Sequelize.ARRAY(Sequelize.TEXT),
       },
       videos: {
-        type: Sequelize.ARRAY(Sequelize.STRING),
+        type: Sequelize.ARRAY(Sequelize.TEXT),
       },
       notes: {
         type: Sequelize.TEXT,

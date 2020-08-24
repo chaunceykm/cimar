@@ -9,9 +9,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Pet.hasMany(models.Foster, { foreignKey: "id" });
-      Pet.hasMany(models.Adopter, { foreignKey: "id" });
-      Pet.belongsTo(models.FeaturedPet, { foreignKey: "petId" });
+      Pet.belongsTo(models.FeaturedPet);
+
+
     }
   }
   Pet.init(
@@ -19,14 +19,12 @@ module.exports = (sequelize, DataTypes) => {
       name: DataTypes.STRING,
       breed: DataTypes.STRING,
       size: DataTypes.STRING,
-      age: DataTypes.STRING,
+      EstDOB: DataTypes.DATE,
       sex: DataTypes.STRING,
       intakeDate: DataTypes.DATE,
       status: DataTypes.STRING,
-      fosterId: DataTypes.INTEGER,
-      adopterId: DataTypes.INTEGER,
-      photos: DataTypes.ARRAY(DataTypes.STRING),
-      videos: DataTypes.ARRAY(DataTypes.STRING),
+      photos: DataTypes.ARRAY(DataTypes.TEXT),
+      videos: DataTypes.ARRAY(DataTypes.TEXT),
       notes: DataTypes.TEXT,
       healthConcerns: DataTypes.BOOLEAN,
       houseBroken: DataTypes.BOOLEAN,

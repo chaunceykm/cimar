@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Fosters', {
+    await queryInterface.createTable('Adopters', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -29,15 +29,9 @@ module.exports = {
       cityStateZip: {
         type: Sequelize.STRING
       },
-      fosterAppId: {
-        type: Sequelize.INTEGER,
-        references: {model: 'FosterApps', key: 'id'}
-      },
+     
       status: {
         type: Sequelize.STRING
-      },
-      notes: {
-        type: Sequelize.TEXT
       },
       createdAt: {
         allowNull: false,
@@ -50,6 +44,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Fosters');
+    await queryInterface.dropTable('Adopters');
   }
 };

@@ -1,33 +1,34 @@
-'use strict';
+"use strict";
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('FosterApps', {
+    await queryInterface.createTable("FosterApps", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
+      
       submittedAt: {
-        type: Sequelize.DATEONLY
+        type: Sequelize.DATEONLY,
       },
       status: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       fileLocation: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('FosterApps');
-  }
+    await queryInterface.dropTable("FosterApps");
+  },
 };

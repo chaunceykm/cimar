@@ -8,10 +8,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      donorId: {
-        type: Sequelize.INTEGER,
-        references: {model: 'Donors', key: 'id'}
-      },
+     
       dateOfDonation: {
         type: Sequelize.DATEONLY
       },
@@ -21,10 +18,7 @@ module.exports = {
       method: {
         type: Sequelize.STRING
       },
-      receiptId: {
-        type: Sequelize.INTEGER,
-        references: {model: 'DonationReceipts', key: 'id'}
-      },
+      
       receiptProvided: {
         type: Sequelize.BOOLEAN
       },
