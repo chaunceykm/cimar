@@ -16,7 +16,8 @@ module.exports = (sequelize, DataTypes) => {
   };
   FeaturedPet.init({
     petId: DataTypes.INTEGER,
-    description: DataTypes.TEXT
+    description: DataTypes.TEXT,
+    photo: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'FeaturedPet',

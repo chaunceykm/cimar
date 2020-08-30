@@ -20,7 +20,7 @@ router.get(
   "/",
   asyncHandler(async (req, res) => {
     const announcements = await Announcement.findAll({
-      attributes: ["id", "description", "link"],
+      attributes: ["id", "description", "link", "photo"],
     });
     res.json({ announcements });
   })
@@ -31,7 +31,7 @@ router.get(
   "/:id(\\d+)",
   asyncHandler(async (req, res) => {
     const announcement = await Announcement.findByPk(req.params.id, {
-      attributes: ["description", "link"],
+      attributes: ["description", "link", "photo"],
     });
     if (announcement) {
       res.json({ announcement });
@@ -49,6 +49,7 @@ router.post(
     const announcement = await Announcement.create({
       description,
       link,
+      photo
     });
     if (res.status === 200) res.json({ announcement });
     else {
@@ -62,12 +63,13 @@ router.put(
   requireAuth,
   asyncHandler(async (req, res) => {
     const announcement = await Announcement.findByPk(req.params.id, {
-      attributes: ["description", "link"],
+      attributes: ["description", "link", "photo"],
     });
     if (announcement) {
       await announcement.update({
         description: req.body.description,
         link: req.body.link,
+        photo: req.body.photo
       });
       res.json({ announcement });
     } else {
